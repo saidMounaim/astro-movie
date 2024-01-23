@@ -1,0 +1,23 @@
+---
+import MovieCard from '../components/MovieCard.astro'
+import Layout from '../layouts/Layout.astro'
+
+import { getMovies } from '../utils'
+
+const popularMovies = await getMovies('popular')
+---
+
+<Layout title="Popular">
+	<div class="pt-10">
+		<div class="mx-auto w-full max-w-[1320px] px-5 sm:px-8 md:px-12">
+			<div class="space-y-10 pb-20">
+				<div class="flex items-center justify-between space-x-5">
+					<h2 class="text-3xl font-bold uppercase text-white">popular Movies</h2>
+				</div>
+				<div class="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10 lg:grid-cols-5">
+					{popularMovies.results.map((movie: any) => <MovieCard movie={movie} />)}
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
