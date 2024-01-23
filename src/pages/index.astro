@@ -1,6 +1,12 @@
 ---
 import MovieCard from '../components/MovieCard.astro'
 import Layout from '../layouts/Layout.astro'
+
+import { getMovies } from '../utils'
+
+const upcomingMovies = await getMovies('upcoming')
+
+console.log(upcomingMovies)
 ---
 
 <Layout title="Home">
