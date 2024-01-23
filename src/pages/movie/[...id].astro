@@ -2,8 +2,9 @@
 import Layout from '../../layouts/Layout.astro'
 import { IMAGE_URL, EMPTY_MOVIE_URL } from '../../utils'
 import { Image } from 'astro:assets'
-import { getMovieDetails, getMovieCats } from '../../utils'
+import { getMovieDetails, getMovieCats, getSimilarMovies } from '../../utils'
 import CastCard from '../../components/CastCard.astro'
+import MovieCard from '../../components/MovieCard.astro'
 
 const { id } = Astro.params
 
@@ -13,6 +14,7 @@ if (id === undefined) {
 
 const movie = await getMovieDetails(id as string)
 const movieCasts = await getMovieCats(id as string)
+const similarMovies = await getSimilarMovies(id as string)
 
 const durationHours = Math.round(movie?.runtime / 60)
 const durationMinutes = Math.round(movie?.runtime % 60)
@@ -121,6 +123,19 @@ if (!movie.success && movie.status_code === 34) {
 							<h2 class="text-md font-bold text-white">Tagline</h2>
 							<p class="text-white">{movie.tagline}</p>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="space-y-10 pb-20">
+			<div class="mx-auto w-full max-w-[1320px] px-5 sm:px-8 md:px-12">
+				<div class="space-y-10 pb-20">
+					<div class="flex items-center justify-between space-x-5">
+						<h2 class="text-3xl font-bold uppercase text-white">Similar Movies</h2>
+					</div>
+					<div class="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10 lg:grid-cols-5">
+						{similarMovies?.results.slice(0, 10).map((movie: any) => <MovieCard movie={movie} />)}
 					</div>
 				</div>
 			</div>

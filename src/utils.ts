@@ -21,3 +21,10 @@ export async function getMovieCats(movieId: string) {
 	)
 	return res.json()
 }
+
+export async function getSimilarMovies(movieId: string) {
+	const res = await fetch(
+		`${API_URL}${movieId}/similar?api_key=${process.env.API_KEY}&language=en-US`
+	)
+	return res.json()
+}
