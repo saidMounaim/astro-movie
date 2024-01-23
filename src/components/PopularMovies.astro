@@ -1,0 +1,21 @@
+---
+import MovieCard from './MovieCard.astro'
+
+const { popularMovies } = Astro.props
+---
+
+<div class="space-y-10 pb-20">
+	<div class="flex items-center justify-between space-x-5">
+		<h2 class="text-3xl font-bold uppercase text-white">Popular Movies</h2>
+	</div>
+	<div class="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10 lg:grid-cols-5">
+		{popularMovies.results.slice(0, 10).map((movie: any) => <MovieCard movie={movie} />)}
+	</div>
+	<div class="text-center">
+		<a href="/popular">
+			<button class="rounded-md bg-green-500 px-4 py-3 font-bold text-white">
+				View All Popular Movies
+			</button>
+		</a>
+	</div>
+</div>

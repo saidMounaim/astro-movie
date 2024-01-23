@@ -1,12 +1,21 @@
-<a href="/movie/" class="cursor-pointer">
+---
+import { IMAGE_URL, EMPTY_MOVIE_URL } from '../utils'
+import { Image } from 'astro:assets'
+
+const { movie } = Astro.props
+---
+
+<a href={`/movie/${movie.id}`} class="cursor-pointer">
 	<div class="space-y-2">
 		<div class="relative overflow-hidden rounded-md transition hover:scale-105">
-			<img
-				src=" https://image.tmdb.org/t/p/w300//qhb1qOilapbapxWQn9jtRCMwXJF.jpg"
-				class="rounded-md shadow-lg"
+			<Image
+				src={movie?.poster_path ? `${IMAGE_URL}${movie?.poster_path}` : EMPTY_MOVIE_URL}
+				class="rounded-md object-cover shadow-lg"
 				alt="787699"
+				width={212}
+				height={319}
 			/>
-			<p class="absolute right-0 top-0 flex items-center space-x-2 bg-red-500 px-1">
+			<p class="absolute right-0 top-0 flex items-center space-x-2 bg-green-500 px-1">
 				<span class="text-white-500 text-xl">
 					<svg
 						stroke="white"
@@ -21,11 +30,11 @@
 						></path>
 					</svg>
 				</span>
-				<span class="pt-1 font-medium text-white">7.1</span>
+				<span class="pt-1 font-medium text-white">{movie.vote_average}</span>
 			</p>
 		</div>
 		<div class="space-y-1">
-			<h3 class="font-bold text-white">Wonka</h3>
+			<h3 class="font-bold text-white">{movie.title}</h3>
 			<p class="text-gray-400">2023-12-06</p>
 		</div>
 	</div>
