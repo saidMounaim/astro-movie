@@ -5,7 +5,7 @@ import { Image } from 'astro:assets'
 const { movie } = Astro.props
 ---
 
-<a href={`/movie/${movie.id}`} class="cursor-pointer">
+<a href={`/movie/${movie?.id}`} class="cursor-pointer">
 	<div class="space-y-2">
 		<div class="relative overflow-hidden rounded-md transition hover:scale-105">
 			<Image
@@ -30,12 +30,12 @@ const { movie } = Astro.props
 						></path>
 					</svg>
 				</span>
-				<span class="pt-1 font-medium text-white">{movie.vote_average}</span>
+				<span class="pt-1 font-medium text-white">{movie?.vote_average}</span>
 			</p>
 		</div>
 		<div class="space-y-1">
-			<h3 class="font-bold text-white">{movie.title}</h3>
-			<p class="text-gray-400">2023-12-06</p>
+			<h3 class="font-bold text-white">{movie?.title}</h3>
+			<p class="text-gray-400">{movie?.release_date}</p>
 		</div>
 	</div>
 </a>

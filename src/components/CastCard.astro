@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets'
+import { IMAGE_URL, EMPTY_MOVIE_URL } from '../utils'
+const { cast } = Astro.props
+---
+
+<div class="space-y-2">
+	<div class="max-h-[320px] overflow-hidden rounded-md">
+		<Image
+			src={cast?.profile_path ? `${IMAGE_URL}${cast?.profile_path}` : `${EMPTY_MOVIE_URL}`}
+			class="h-full w-full rounded-md object-cover"
+			width={300}
+			height={450}
+			alt={cast.original_name}
+		/>
+	</div>
+	<h2 class="text-xl font-medium text-white">{cast.original_name}</h2>
+	<p class="text-md text-white">{cast.character}</p>
+</div>

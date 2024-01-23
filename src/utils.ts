@@ -9,3 +9,15 @@ export async function getMovies(type: string = 'popular') {
 	const res = await fetch(`${API_URL}${type}?api_key=${process.env.API_KEY}&language=en-US`)
 	return res.json()
 }
+
+export async function getMovieDetails(movieId: string) {
+	const res = await fetch(`${API_URL}${movieId}?api_key=${process.env.API_KEY}&language=en-US`)
+	return res.json()
+}
+
+export async function getMovieCats(movieId: string) {
+	const res = await fetch(
+		`${API_URL}${movieId}/credits?api_key=${process.env.API_KEY}&language=en-US`
+	)
+	return res.json()
+}
